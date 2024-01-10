@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+dt 0.002;//writeInterval
+wdt  300;
+etime 30;//2712;
+
+application     frac2dFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         $etime;
+
+deltaT          $dt;
+
+writeControl    timeStep;
+
+writeInterval   $wdt;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  9;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+
+functions
+{
+	volAverageH
+	{
+		type volFieldValue;;
+		functionObjectLibs ("libfieldFunctionObjects.so");
+		enabled true ;
+       	writeControl   runTime;
+        writeInterval  $dt;//
+		log no;
+        writeFields     no;
+        regionType      cellZone; 
+        name            c0;
+		operation volAverage;
+		fields
+		(
+		  H
+		);
+	}
+}

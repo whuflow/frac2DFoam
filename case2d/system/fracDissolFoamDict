@@ -1,0 +1,35 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     3.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fracDissolFoam;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Numbers of fields
+nC                      1;      // Number of concentrations (CList)
+nR                      1;      // Number of reactions (RList, dRList)
+
+// Numbers of reactive surfaces
+nSurface                2;      // Number of reactive surfaces( 1 or 2 )
+
+// Solver flags
+QCON                    true;  // Constant flow rate
+DEBUG                   true;   // Include debugging info
+
+// Solver parameters
+Qmax                    1e6;    // Max volumetric flow rate
+
+// Sherwood number
+Sh                      8;    // Sherwood number
+
+// ************************************************************************* //
